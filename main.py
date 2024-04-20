@@ -1,7 +1,7 @@
 import streamlit as st
 from utils import generate_script
 
-st.title("🎦视频脚本生成器")
+st.title("🎦视频脚本生成器(基于Chatgpt-3.5turbo)")
 
 with st.sidebar:
     openai_api_key = st.text_input("请输入你的OPENAI API密钥：",type="password")
@@ -21,6 +21,8 @@ if submit and not openai_api_key:
 if submit and not subject:
     st.info("请输入视频主题")
     st.stop()
+if submit and not video_length < 60:
+    st.info("咋滴，你要拍电影啊？搞辣么长的视频😡时长调短一点")
 if submit and not video_length >= 0.1:
     st.info("视频时长需要大于等于0.1")
     st.stop()
